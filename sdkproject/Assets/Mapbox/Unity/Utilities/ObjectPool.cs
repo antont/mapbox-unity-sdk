@@ -33,6 +33,11 @@
 		{
 			_objects.Clear();
 		}
+
+		public IEnumerable<T> GetAllObjects()
+		{
+			return _objects;
+		}
 	}
 }
 

@@ -230,5 +230,22 @@ namespace Mapbox.Unity.MeshGeneration.Modifiers
 
 			return _tempVectorEntity.GameObject;
 		}
+
+		/// <summary>
+		/// Should be called before destroying modifier stack
+		/// </summary>
+		public override void Destroying()
+		{
+			base.Destroying();
+			foreach (var modifier in GoModifiers)
+			{
+				modifier.Destroying();
+			}
+			foreach (var vectorEntity in _pool.GetAllObjects())
+			{
+				Destroy(vectorEntity.GameObject);
+			}
+			_pool.Clear();
+		}
 	}
 }

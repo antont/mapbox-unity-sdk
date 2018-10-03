@@ -183,17 +183,16 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 			_properties = (VectorLayerProperties)options;
 			if (_layerBuilder != null)
 			{
+
+				//call "Destroying" so each layer will clear their caches
+				foreach (var layerTuples in _layerBuilder)
+				{
+					foreach (var layer in layerTuples.Value)
+					{
+						layer.Destroying();
+					}
+				}
 				_layerBuilder.Clear();
-				// TODO : IS THIS CODE REALLY REQUIRED?
-				//CreateLayerVisualizers();
-				//foreach (var layer in _layerBuilder)
-				//{
-				//	foreach (var item in layer.Value)
-				//	{
-				//		(item as VectorLayerVisualizer).SetProperties(null);
-				//		item.Initialize();
-				//	}
-				//}
 
 				CreatePOILayerVisualizers();
 

@@ -50,5 +50,7 @@ namespace Mapbox.Unity.MeshGeneration.Interfaces
 				handler(this, e);
 			}
 		}
+
+		public abstract void Destroying();
 	}
 }

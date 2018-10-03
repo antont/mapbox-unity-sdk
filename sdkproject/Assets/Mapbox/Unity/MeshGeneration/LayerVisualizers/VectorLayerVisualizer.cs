@@ -746,5 +746,14 @@ namespace Mapbox.Unity.MeshGeneration.Interfaces
 			}
 			UnbindSubLayerEvents();
 		}
+
+		/// <summary>
+		/// Should be called before destroying VectorLayerVisualizer objects to
+		/// clean up previously cached gameobjects.
+		/// </summary>
+		public override void Destroying()
+		{
+			_defaultStack.Destroying();
+		}
 	}
 }

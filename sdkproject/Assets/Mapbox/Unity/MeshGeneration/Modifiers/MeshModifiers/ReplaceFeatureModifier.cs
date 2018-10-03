@@ -299,5 +299,15 @@
 			go.SetActive(false);
 			go.transform.SetParent(_poolGameObject.transform, false);
 		}
+
+		public override void Destroying()
+		{
+			foreach (var gameObject in _objects.Values)
+			{
+				Destroy(gameObject);
+			}
+			_objects.Clear();
+			_objectPosition.Clear();
+		}
 	}
 }
