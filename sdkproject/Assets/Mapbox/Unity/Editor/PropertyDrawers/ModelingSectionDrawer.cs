@@ -79,7 +79,6 @@
 					EditorGUILayout.PropertyField(colliderOptionsProperty);
 					if (EditorGUI.EndChangeCheck())
 					{
-						Debug.Log("Collider UI changed");
 						EditorHelper.CheckForModifiedProperty(colliderOptionsProperty);
 					}
 				}
