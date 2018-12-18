@@ -67,6 +67,7 @@ namespace Mapbox.Unity.Map
 
 		public void Initialize()
 		{
+			Debug.Log("VectorLayer Initialize");
 			_vectorTileFactory = ScriptableObject.CreateInstance<VectorTileFactory>();
 			UpdateFactorySettings();
 
@@ -103,6 +104,8 @@ namespace Mapbox.Unity.Map
 		//Private Methods
 		private void AddVectorLayer(object sender, EventArgs args)
 		{
+			Debug.Log("VectorLayer AddVectorLayer");
+
 			VectorLayerUpdateArgs layerUpdateArgs = args as VectorLayerUpdateArgs;
 			if (layerUpdateArgs.property is PrefabItemOptions)
 			{
@@ -161,6 +164,8 @@ namespace Mapbox.Unity.Map
 		/// <param name="vectorSource">Data source (Mapid) to add to existing sources.</param>
 		public virtual void AddLayerSource(string vectorSource)
 		{
+			Debug.Log("VectorLayer AddLayerSource");
+			
 			if (!string.IsNullOrEmpty(vectorSource))
 			{
 				if (!_layerProperty.sourceOptions.Id.Contains(vectorSource))
@@ -375,6 +380,8 @@ namespace Mapbox.Unity.Map
 									  bool scaleDownWithWorld = true,
 									  string locationItemName = "New Location")
 		{
+			Debug.Log("VectorLayer SpawnPrefabByName");
+
 			PrefabItemOptions item = new PrefabItemOptions()
 			{
 				findByType = LocationPrefabFindBy.POIName,
@@ -401,6 +408,8 @@ namespace Mapbox.Unity.Map
 
 		public virtual void AddFeatureSubLayer(VectorSubLayerProperties subLayerProperties)
 		{
+			Debug.Log("VectorLayer AddFeatureSubLayer");
+			
 			if (_layerProperty.vectorSubLayers == null)
 			{
 				_layerProperty.vectorSubLayers = new List<VectorSubLayerProperties>();

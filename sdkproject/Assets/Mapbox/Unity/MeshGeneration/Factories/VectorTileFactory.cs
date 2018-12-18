@@ -59,6 +59,7 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 		#region Public Methods
 		public void RedrawSubLayer(UnityTile tile, LayerVisualizerBase visualizer)
 		{
+			Debug.Log("VectorTileFactory RedrawSubLayer");
 			CreateFeatureWithBuilder(tile, visualizer.SubLayerProperties.coreOptions.layerName, visualizer);
 		}
 
@@ -83,6 +84,8 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 		#region Public Layer Operation Api Methods for
 		public virtual LayerVisualizerBase AddVectorLayerVisualizer(VectorSubLayerProperties subLayer)
 		{
+			Debug.Log("VectorTileFactory AddVectorLayerVisualizer");
+
 			//if its of type prefabitemoptions then separate the visualizer type
 			LayerVisualizerBase visualizer = CreateInstance<VectorLayerVisualizer>();
 
@@ -178,6 +181,8 @@ namespace Mapbox.Unity.MeshGeneration.Factories
 		/// </summary>
 		protected override void OnInitialized()
 		{
+			Debug.Log("VectorTileFactory OnInitialized");
+
 			_layerProgress = new Dictionary<UnityTile, HashSet<LayerVisualizerBase>>();
 			_layerBuilder = new Dictionary<string, List<LayerVisualizerBase>>();
 

@@ -52,6 +52,8 @@
 
 		public void ProcessTileJSONData(TileJSONResponse tjr)
 		{
+			//Debug.Log("ProcessTileJSONData");
+
 			tileJSONLoaded = true;
 			List<string> layerPropertiesList = new List<string>();
 			// Un-comment if required. Throws a warning right now. 

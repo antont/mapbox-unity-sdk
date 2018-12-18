@@ -24,7 +24,6 @@ namespace Mapbox.Unity.MeshGeneration.Interfaces
 		public ILayerFeatureFilterComparer layerFeatureFilterCombiner;
 	}
 
-
 	public class VectorLayerVisualizer : LayerVisualizerBase
 	{
 		VectorSubLayerProperties _layerProperties;
@@ -594,7 +593,27 @@ namespace Mapbox.Unity.MeshGeneration.Interfaces
 
 		private bool ProcessFeature(int index, UnityTile tile, VectorLayerVisualizerProperties layerProperties, float layerExtent)
 		{
-			var fe = layerProperties.vectorTileLayer.GetFeature(index);
+			//Debug.Log("VectorLayerVisualizer ProcessFeature");
+			VectorTileFeature fe = layerProperties.vectorTileLayer.GetFeature(index);
+			//Debug.Log(fe.GeometryType);
+			//Debug.Log(fe.GetProperties());
+			Dictionary<string, object> props = fe.GetProperties();
+			string featclass = (string)props["class"];
+			if (featclass == "path") {
+				Debug.Log($"PATH {props["type"]}"); //"cycleway"				
+			} else if (featclass == "street") {
+				Debug.Log($"STREET {props["type"]}"); //"residential"				
+			}
+			//NOTE: there are also class:pedestrian, type:platform .. which seems strange
+			else {
+				foreach (KeyValuePair<string, object> item in props) {
+					string k = item.Key;
+					object o = item.Value;
+					//Debug.Log($"{k} : {o}");
+				}
+			}
+
+
 			List<List<Point2d<float>>> geom;
 			if (layerProperties.buildingsWithUniqueIds == true) //ids from building dataset is big ulongs
 			{
